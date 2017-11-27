@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => Gomedo\User::class,
+        'model' => Gomedo\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Gomedo\User::class, function (Faker $faker) {
+$factory->define(\Gomedo\Models\User::class, function (Faker $faker) {
     static $password;
 
     return [

@@ -13,3 +13,4 @@ _ide_helper.php
 .env
 composer.lock
 composer.phar
+package-lock.json

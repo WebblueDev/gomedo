@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Gomedo\User::class,
+            'model' => Gomedo\Models\User::class,
         ],
 
         // 'users' => [
