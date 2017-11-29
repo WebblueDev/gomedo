@@ -57,5 +57,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Gomedo\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin' => \Gomedo\Http\Middleware\CheckAdmin::class,
+        'ajax' => \Gomedo\Http\Middleware\OnlyAjax::class,
     ];
 }

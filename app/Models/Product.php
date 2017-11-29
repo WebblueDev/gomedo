@@ -9,6 +9,10 @@ class Product extends Model
 {
     use Assetable;
 
+    protected $attributes = [
+        'is_listed' => true,
+    ];
+
     protected $guarded = [
         'id',
     ];

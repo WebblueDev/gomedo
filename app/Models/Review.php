@@ -10,6 +10,11 @@ class Review extends Model
         'id',
     ];
 
+    protected $attributes = [
+        'review' => "",
+        'rating' => 0,
+    ];
+
     public function reviewable() {
         return $this->morphTo();
     }

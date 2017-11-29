@@ -10,6 +10,11 @@ class AssetGroup extends Model
         'id',
     ];
 
+    protected $attributes = [
+        'unique' => false,
+        'system' => false,
+    ];
+
     public static function getEnums() {
         return ['product', 'user', 'provider', 'category', 'payment_method', 'product_testers'];
     }

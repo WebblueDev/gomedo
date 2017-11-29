@@ -10,6 +10,12 @@ class ProductField extends Model
     use SortableTrait;
 
     protected static $sortableField = 'order';
+
+    protected $attributes = [
+        'is_filter' => false,
+        'is_nullable' => true,
+    ];
+
     protected $guarded = [
         'id',
     ];

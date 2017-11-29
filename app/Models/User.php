@@ -2,6 +2,7 @@
 
 namespace Gomedo\Models;
 
+use Gomedo\Notifications\PasswordReset;
 use Gomedo\Traits\Assetable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +12,7 @@ class User extends Authenticatable
     use Notifiable, Assetable;
 
     protected $guarded = [
-        'id', 'password', 'remember_token',
+        'id',
     ];
 
     protected $hidden = [
@@ -20,6 +21,13 @@ class User extends Authenticatable
 
     public $with = [
         'entity',
+    ];
+
+    protected $attributes = [
+        'is_admin' => false,
+        'is_active' => true,
+        'is_verified' => false,
+        'is_banned' => false,
     ];
 
     public function entity() {
@@ -32,6 +40,11 @@ class User extends Authenticatable
 
     public function reviews() {
         return $this->hasMany(Review::class, 'user_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordReset($token));
     }
 
 }

@@ -9,6 +9,10 @@ class Entity extends Model
 {
     use Sluggable;
 
+    protected $attributes = [
+        'is_active' => true,
+    ];
+
     protected $guarded = [
         'id',
     ];

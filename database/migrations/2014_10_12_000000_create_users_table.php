@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_admin');
             $table->boolean('is_active');
+            $table->boolean('is_verified');
             $table->boolean('is_banned');
+            $table->string('email_verification_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,6 +12,10 @@ class PaymentMethod extends Model
 
     protected static $sortableField = 'order';
 
+    protected $attributes = [
+        'website' => "",
+    ];
+
     protected $guarded = [
         'id',
     ];

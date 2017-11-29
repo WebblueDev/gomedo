@@ -10,6 +10,10 @@ class Category extends Model
 {
     use NodeTrait, Assetable;
 
+    protected $attributes = [
+        'is_listed' => true,
+    ];
+
     protected $guarded = [
         'id',
     ];

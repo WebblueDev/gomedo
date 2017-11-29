@@ -175,9 +175,9 @@ return [
          */
         Gomedo\Providers\AppServiceProvider::class,
         Gomedo\Providers\AuthServiceProvider::class,
-        // Gomedo\Providers\BroadcastServiceProvider::class,
         Gomedo\Providers\EventServiceProvider::class,
         Gomedo\Providers\RouteServiceProvider::class,
+        Gomedo\Providers\RepositoryServiceProdvider::class,
 
     ],
 

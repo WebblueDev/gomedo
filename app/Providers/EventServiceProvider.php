@@ -2,6 +2,10 @@
 
 namespace Gomedo\Providers;
 
+use Gomedo\Events\UserHasRegistered;
+use Gomedo\Events\UserHasVerified;
+use Gomedo\Listeners\SendVerificationEmail;
+use Gomedo\Listeners\SendWelcomeEmail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,8 +17,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Gomedo\Events\Event' => [
-            'Gomedo\Listeners\EventListener',
+        UserHasRegistered::class => [
+            SendVerificationEmail::class
+        ],
+        UserHasVerified::class => [
+            SendWelcomeEmail::class
         ],
     ];
 
