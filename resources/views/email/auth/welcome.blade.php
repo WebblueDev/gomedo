@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h4 class="h4" style="text-align: center;">@lang('email.account.welcome.title')</h4>
-    @lang('email.account.welcome.text', ['user' => $user->firstName])
+    <h4 class="h4" style="text-align: center;">@lang('email.auth.welcome.title')</h4>
+    @lang('email.auth.welcome.text', ['user' => $user->name])
 
 @endsection

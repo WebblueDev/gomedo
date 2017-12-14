@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(2);
-var isBuffer = __webpack_require__(12);
+var isBuffer = __webpack_require__(11);
 
 /*global toString:true*/
 
@@ -471,7 +471,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
 
 /***/ }),
 /* 2 */
@@ -743,196 +743,6 @@ module.exports = Cancel;
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -942,7 +752,7 @@ process.umask = function() { return 0; };
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(9);
+  window.$ = window.jQuery = __webpack_require__(8);
 } catch (e) {}
 
 /**
@@ -951,7 +761,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(10);
+window.axios = __webpack_require__(9);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -970,7 +780,7 @@ if (token) {
 }
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11186,9 +10996,9 @@ jQuery.nodeName = nodeName;
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( true ) {
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
@@ -11230,13 +11040,13 @@ return jQuery;
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(10);
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11244,7 +11054,7 @@ module.exports = __webpack_require__(11);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(2);
-var Axios = __webpack_require__(13);
+var Axios = __webpack_require__(12);
 var defaults = __webpack_require__(1);
 
 /**
@@ -11295,7 +11105,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /*!
@@ -11322,7 +11132,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11412,6 +11222,196 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = Axios;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
 
 
 /***/ }),
@@ -12104,29 +12104,321 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 29 */,
+/* 29 */
+/***/ (function(module, exports) {
+
+var _POPUP = undefined;
+
+$(function () {
+    'use strict';
+
+    $.fn.popup = function (options) {
+
+        $.Popup = function (settings) {
+            var p = this;
+            var defaults = {
+
+                // Markup
+                containerId: 'popup',
+                containerClass: 'popup',
+                backClass: 'popup-background',
+                closeClass: 'popup-close',
+                openClass: 'popup-open',
+                hideClass: 'popup-hide',
+                popupAnimationSpeed: 300,
+
+                // Callbacks
+                error: function error(p, data) {
+                    if (data === undefined) alert('Error');else alert(data.code + ': ' + data.message);
+                }
+            };
+
+            var $container = void 0;
+            var $identifier = void 0;
+            var $back = void 0;
+            var $p = void 0;
+
+            p.o = $.extend(true, {}, defaults, settings);
+
+            p.open = function (ele) {
+
+                // Get identifier
+                var id = $(ele).attr('data-popup');
+
+                // Cache check
+                if (_POPUP === undefined || _POPUP != p || _POPUP != undefined && $identifier != id) {
+
+                    if (_POPUP != p || _POPUP != undefined && $identifier != id) {
+                        p.cleanUp();
+                    }
+
+                    // Set identifier in plugin
+                    $identifier = id;
+
+                    // Get content url
+                    var content = $(ele).attr('href');
+                    if (content === null) {
+                        p.o.error.call(p, content);
+                        return false;
+                    }
+
+                    // Create popup container
+                    $container = $('<div id="' + p.o.containerId + '" class="' + p.o.openClass + '" />').prependTo($('body'));
+
+                    // Create back and fade in
+                    $back = $('<div class="' + p.o.backClass + '"/>').appendTo($container).on('click', function (e) {
+                        p.close(e);
+                    });
+
+                    // Get Ajax Content
+                    $.ajax({
+                        url: content,
+                        success: function success(data) {
+                            showContent(data.data);
+                        },
+                        error: function error(data) {
+                            p.o.error.call(p, data);
+                        }
+                    });
+                } else {
+                    // Just show the popup again
+                    $container.show();
+                    $container.toggleClass(p.o.openClass + " " + p.o.closeClass);
+                }
+
+                return p;
+            };
+
+            /**
+             * Shows the content
+             *
+             * @param  {string} content
+             */
+            function showContent(content) {
+
+                // Set popup container and put in the content
+                $container.append(content);
+                $p = $("." + p.o.containerClass);
+
+                // Add hide button function
+                p.addHide();
+            }
+
+            p.addHide = function (e) {
+                $p.find('.' + p.o.hideClass).on('click', function (e) {
+                    p.close(e);
+                });
+            };
+
+            /**
+             * Close the popup
+             *
+             * @return {Object}
+             */
+            p.close = function (e) {
+                if (e !== undefined) e.preventDefault();
+                $container.toggleClass(p.o.openClass + " " + p.o.closeClass);
+                setTimeout(function () {
+                    $container.hide();
+                }, p.o.popupAnimationSpeed);
+                return p;
+            };
+
+            /**
+             * Clean up the popup
+             *
+             * @return {Object}
+             */
+            p.cleanUp = function () {
+
+                // Can not remove $container, maybe there is another popup instance!
+                $('#' + p.o.containerId).remove();
+                $container = $p = $back = undefined;
+                _POPUP = undefined;
+
+                return p;
+            };
+        };
+
+        var $popup = new $.Popup(options);
+        return this.each(function () {
+            $(this).on('click', function (e) {
+                e.preventDefault();
+                _POPUP = $popup.open(this);
+            });
+        });
+    };
+}(jQuery));
+
+/***/ }),
 /* 30 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-__webpack_require__(31);
-__webpack_require__(32);
-module.exports = __webpack_require__(33);
+$(function () {
+    'use strict';
 
+    $.fn.ajaxForm = function (options) {
+
+        $.AjaxForm = function (settings) {
+            var a = this;
+            var defaults = {
+
+                // Markup
+                submitClass: 'form-submit',
+                loadingClass: 'loading',
+                containerClass: 'popup',
+                errorClass: 'input-error',
+                errorMsgClass: 'input-error-msg',
+                redirectSuccess: false,
+                reloadSuccess: false,
+                closeSuccess: false,
+                closeTimeout: false,
+                closeTimeoutTime: 2000,
+                popup: undefined,
+
+                // Callbacks
+                afterSuccess: function afterSuccess(data) {},
+                error: function error() {
+                    alert('Error');
+                },
+                beforeSubmit: function beforeSubmit() {},
+                beforeSend: function beforeSend() {
+                    this.loadingStart();
+                    this.removeErrors();
+                },
+                success: function success(data) {
+                    var _this = this;
+
+                    if (this.o.reloadSuccess) {
+                        window.location.reload();
+                    } else if (this.o.redirectSuccess && data.data) {
+                        window.location.href = data.data;
+                    } else if (!this.o.closeSuccess && data.data) {
+                        this.loadingEnd();
+                        $('.' + this.o.containerClass).html(data.data);
+                        if (this.o.popup != undefined) {
+                            this.o.popup.addHide();
+                            if (this.o.closeTimeout) {
+                                setTimeout(function () {
+                                    _this.o.popup.close();
+                                }, this.o.closeTimeoutTime);
+                            }
+                        }
+                        this.o.afterSuccess.call(this, data);
+                    } else {
+                        this.loadingEnd();
+                        if (this.o.popup != undefined) this.o.popup.close();
+                        this.o.afterSuccess.call(this, data);
+                    }
+                },
+                ajaxError: function ajaxError(data) {
+                    console.log(data);
+                    this.loadingEnd();
+                    $.each(data.errors, function (key, value) {
+                        var ele = $(a.ele).find('#' + key);
+                        if (ele != undefined) {
+                            if ($(ele).hasClass(a.o.errorClass)) {
+                                $(ele).siblings('.' + a.o.errorMsgClass).html(value);
+                            } else {
+                                $(ele).addClass(a.o.errorClass);
+                                $(ele).parent().append($('<span class="' + a.o.errorMsgClass + '"/>').html(value));
+                                $(ele).one('keydown', function () {
+                                    $(this).removeClass(a.o.errorClass);
+                                    $(this).siblings('.' + a.o.errorMsgClass).remove();
+                                });
+                            }
+                        }
+                    });
+                }
+            };
+
+            a.ele = undefined;
+            a.isLoading = false;
+            a.o = $.extend(true, {}, defaults, settings);
+
+            a.submit = function (ele) {
+                a.o.beforeSubmit.call(a);
+                a.ele = ele;
+
+                // If no content is set or already loading
+                if (ele.action === null || a.isLoading == true) {
+                    return false;
+                }
+
+                $.ajax({
+                    url: ele.action,
+                    type: $(ele).attr('method'),
+                    cache: false,
+                    data: new FormData(ele),
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function beforeSend() {
+                        a.o.beforeSend.call(a);
+                    },
+                    success: function success(data) {
+                        a.o.success.call(a, data);
+                    },
+                    error: function error(xhr) {
+                        a.o.ajaxError.call(a, xhr.responseJSON);
+                    }
+                });
+            };
+
+            a.loadingStart = function () {
+                if (a.o.submitClass != undefined) $('.' + a.o.submitClass).addClass(a.o.loadingClass);
+                a.isLoading = true;
+            };
+
+            a.loadingEnd = function () {
+                a.isLoading = false;
+                if (a.o.submitClass != undefined) $('.' + a.o.submitClass).removeClass(a.o.loadingClass);
+            };
+
+            a.removeErrors = function () {
+                $(a.ele).find('.' + a.o.errorMsgClass).remove();
+                $(a.ele).find('.' + a.o.errorClass).removeClass(a.o.errorClass);
+            };
+        };
+
+        var _a = new $.AjaxForm(options);
+        return this.each(function () {
+            $(this).data('ajaxForm', _a);
+
+            $(this).on('submit', function (e) {
+                e.preventDefault();
+                _a.submit(this);
+            });
+        });
+    };
+}(jQuery));
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(8);
+__webpack_require__(32);
+__webpack_require__(33);
+module.exports = __webpack_require__(34);
+
 
 /***/ }),
 /* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(7);
+__webpack_require__(29);
+__webpack_require__(30);
+
+$('[data-popup]').popup();
+
+/***/ }),
+/* 33 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

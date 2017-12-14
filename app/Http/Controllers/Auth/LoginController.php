@@ -6,6 +6,7 @@ use Gomedo\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -30,7 +31,7 @@ class LoginController extends Controller
     protected $redirectTo = '/';
 
     /**
-     * Create a new controller instance.
+     * Create a new controller instance
      *
      * @return void
      */
@@ -42,9 +43,6 @@ class LoginController extends Controller
 
     public function showLoginForm(Request $request)
     {
-        if ( ! $request->ajax())
-            return back();
-
         return $this->getJsonSuccess(
             view('frontend.auth.login', [])->render()
         );
@@ -52,13 +50,34 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    protected function getCredentials(Request $request) {
+    protected function credentials(Request $request)
+    {
         return [
-            'email' => Request::input('email'),
-            'password' => Request::input('password'),
-            'is_active' => true,
-            'is_verified' => true,
-            'is_banned' => false
+            'email' => $request->input($this->username()),
+            'password' => $request->input('password'),
+            'is_active' => '1',
+            'is_verified' => '1',
+            'is_banned' => '0',
         ];
+        return $request->only($this->username(), 'password');
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+
+        throw ValidationException::withMessages([
+            $this->username() => [trans('user.auth.login.errors.failed')]
+        ]);
+    }
+
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = $this->limiter()->availableIn(
+            $this->throttleKey($request)
+        );
+
+        throw ValidationException::withMessages([
+            $this->username() => [Lang::get('user.auth.login.errors.throttle', ['seconds' => $seconds])],
+        ])->status(423);
     }
 }

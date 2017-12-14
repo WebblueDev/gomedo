@@ -31,7 +31,7 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->subject(trans('user.auth.register.email.subject'))
+        return $this->subject(trans('email.auth.welcome.title'))
             ->view('email.auth.welcome');
     }
 }

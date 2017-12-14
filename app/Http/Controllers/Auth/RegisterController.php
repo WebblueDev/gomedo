@@ -61,7 +61,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:20',
+            'name' => 'required|string|max:20|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -90,7 +90,7 @@ class RegisterController extends Controller
 
         $validator = $this->validator($request->all());
         if ($validator->fails())
-            return $this->getJsonError($validator->messages()->first());
+            return $this->getJsonError("Validation failed", $validator->messages());
 
         $user = $this->create($request->all());
         event(new UserHasRegistered($user));

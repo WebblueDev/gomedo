@@ -1,11 +1,247 @@
-
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,800");
 
-// Variables
+// Externals
 @import "variables";
+@import "../normalize";
+@import "../grid";
+@import "helpers";
+@import "popup";
+@import "controls";
+@import "icons";
 
-h1 {
-  border-radius: 2px;
-  background: #fff;
+html {
+  background-color: #fff;
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  min-width: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+  line-height: 1.5;
+}
+
+body {
+  color: $darker;
+  font-weight: 500;
+  letter-spacing: -.025em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body, button, input, select, textarea {
+  font-family: $font-family;
+}
+
+a {
+  color: $primary;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-transition: none 86ms ease-out;
+  transition: none 86ms ease-out;
+  transition: all .2s;
+}
+a:hover {
+  color: $darker;
+}
+strong {
+  font-weight: $font-strong;
+}
+
+p, ul, ol {
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+.content blockquote:not(:last-child),
+.content ol:not(:last-child),
+.content p:not(:last-child),
+.content ul:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.heading {
+  font-size: $font-xl;
+  color: $darker;
+  text-transform: none;
+  margin: 0;
+  line-height: 1;
+
+  &.with-spacing {
+    margin-top: $spacing-l;
+  }
+  + .subheading {
+    color: $dark;
+    font-weight: $font-strong;
+    margin: $spacing-s 0 $spacing-m;
+  }
+}
+
+
+header#page-header {
+  display: block;
+
+  nav#main-nav {
+    background: #fff;
+    padding: $spacing-s 0;
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  #logo {
+    display: block;
+    height: 64px;
+    img {
+      height: 100%;
+    }
+  }
+  #search {
+    flex: 1;
+    margin: 0 20px;
+
+    .search-input {
+      background-color: $lighter;
+      border: 1px solid #e6ecf0;
+      color: $darker;
+      display: block;
+      height: 40px;
+      line-height: 16px;
+      padding: 8px 32px 8px 21px;
+      font-weight: $font-strong;
+      font-size: 0.8em;
+      outline: 0;
+      border-radius: 60px;
+      transition: all 0.2s ease;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 100%;
+
+      &:focus,
+      &:active {
+        border: 2px solid $primary;
+      }
+      &::-moz-placeholder{
+        color: $dark;
+      }
+      &:-moz-placeholder{
+        color: $dark;
+      }
+      &::-webkit-input-placeholder{
+        color: $dark;
+      }
+      &:-ms-input-placeholder {
+        color: $dark;
+      }
+    }
+  }
+  #account-menu {
+
+  }
+  nav#secondary-nav {
+    background: $light;
+
+    ul > li {
+      width: 100%;
+      position: relative;
+
+      &:not(:first-child):not(:hover):after {
+        position: absolute;
+        width: 1px;
+        height: 50%;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #d6dce0;
+        content: '';
+      }
+      &:hover + li:after {
+        display: none;
+      }
+      > a {
+        display: block;
+        color: $darker;
+        text-align: center;
+        font-weight: $font-strong;
+        padding: $spacing-s;
+        position: relative;
+
+        &:hover {
+          background: $secondary;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+footer#page-footer{
+
+  .footer-inner {
+    background: $lighter;
+    width: 140%;
+    margin-left: -20%;
+    margin-right: -20%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    height: 12.5em;
+    padding-top: 1em;
+  }
+}
+
+main {
+  flex: 1;
+  height: 100%;
+}
+
+.section {
+
+  &.with-spacing {
+    padding: $spacing-l 0;
+  }
+}
+
+.container {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+@media screen and (min-width:1300px){
+  .container{
+    max-width: $main-width;
+  }
+}
+
+.tab-nav {
+  li {
+    cursor: pointer;
+    margin-right: $spacing-m;
+    opacity: 0.5;
+    transition: all .2s;
+    text-transform: uppercase;
+    font-size: 0.9em;
+
+    &.active {
+      color: $primary;
+      opacity: 1;
+      font-weight: $font-stronger;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.article-card {
+  border-radius: $border-radius;
+  height: 300px;
+  background: url('') center/cover no-repeat
+
 }

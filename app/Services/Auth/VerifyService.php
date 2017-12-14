@@ -21,7 +21,7 @@ class VerifyService
     }
 
     public function verify($user) {
-        $this->users->update($user, [
+        $this->users->update($user->id, [
            'email_verification_token' => Null,
             'is_verified' => true
         ]);
@@ -32,9 +32,9 @@ class VerifyService
         return $this->users->findOneBy('email_verification_token', $token);
     }
 
-    public function getEmailVerificationUrl($user)
+    public static function getEmailVerificationUrl($user)
     {
-        return route('account.verify', ['token' => $user->email_verification_token]);
+        return route('user.verify', ['token' => $user->email_verification_token]);
     }
 
 }

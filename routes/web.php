@@ -17,17 +17,21 @@ Route::get('/', [
     'as' => 'index', 'uses' => 'Frontend\IndexController@index'
 ]);
 
-Route::group(['middleware' => 'guest', 'prefix' => 'user', 'namespace' => 'Auth', 'as' => 'user.'], function () {
-    Route::group(['middleware' => 'ajax'], function () {
-        Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-        Route::post('/register', 'RegisterController@register')->name('register');
-        Route::get('/login', 'LoginController@showLoginForm')->name('login');
-        Route::post('/login', 'LoginController@login')->name('login');
-        Route::get('/forgot', 'ForgotPasswordController@showLinkRequestForm')->name('forgot');
-        Route::post('/forgot', 'ForgotPasswordController@sendResetLinkEmail')->name('forgot');
-        Route::post('/reset', 'ResetPasswordController@reset')->name('reset');
+Route::group(['prefix' => 'user', 'namespace' => 'Auth', 'as' => 'user.'], function () {
+    Route::group(['middleware' => 'guest'], function () {
+        Route::group(['middleware' => 'ajax'], function () {
+            Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+            Route::post('/register', 'RegisterController@register')->name('register');
+            Route::get('/login', 'LoginController@showLoginForm')->name('login');
+            Route::post('/login', 'LoginController@login')->name('login');
+            Route::get('/forgot', 'ForgotPasswordController@showLinkRequestForm')->name('forgot');
+            Route::post('/forgot', 'ForgotPasswordController@sendResetLinkEmail')->name('forgot');
+            Route::post('/reset', 'ResetPasswordController@reset')->name('reset');
+        });
+        Route::get('/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset');
+        Route::get('/verify/{token}', 'VerifyController@verify')->name('verify');
     });
-    Route::get('/reset/{token}', 'ResetPasswordController@showResetForm')->name('reset');
-    Route::get('/verify/{token}', 'VerifyController@verify')->name('verify');
-    Route::post('/logout', 'LoginController@logout')->name('logout');
+    Route::group(['middleware' => 'auth'], function () {
+        Route::post('/user/logout', 'LoginController@logout')->name('logout');
+    });
 });

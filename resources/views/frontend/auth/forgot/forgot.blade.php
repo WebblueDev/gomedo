@@ -1,10 +1,10 @@
-@extends('frontend.master.popup.master')
+@extends('frontend.layouts.popup.master')
 
 @section('content')
     <div class="px-popUpHeader">
         <h2>Passwort vergessen?</h2>
     </div>
-    <form id="forgot-form" role="form" method="POST" action="{{ route('password.email') }}">
+    <form id="forgot-form" role="form" method="POST" action="{{ route('user.forgot') }}">
         {{ csrf_field() }}
         <div class="px-popUpContent">
             <div class="popup-error"></div>

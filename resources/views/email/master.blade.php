@@ -16,7 +16,7 @@
         -webkit-text-size-adjust:none;
     }
     body{
-        margin:0; padding:20px 0;border-top:20px solid #159272;
+        margin:0; padding:20px 0;border-top:20px solid #006eb9;
     }
     img{
         border:0; height:auto; line-height:100%; outline:none; text-decoration:none;
@@ -28,11 +28,11 @@
 
     }
     body, #backgroundTable{
-        background-color:#363435;
+        background-color:#fff;
     }
 
     h4, .h4{
-        color:#159272;
+        color:#4d545d;
         display:block;
         font-family:Arial;
         font-size:22px;
@@ -50,21 +50,21 @@
     }
 
     .preheaderContent div{
-        color:#505050;
+        color:#4d545d;
         font-family:Arial;
         font-size:10px;
         line-height:100%;
         text-align:left;
     }
     .preheaderContent div a:link, .preheaderContent div a:visited, .preheaderContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:underline;
     }
 
     #templateHeader{
         border-bottom:0;
-        background-color: #363435;
+        background-color: #fff;
     }
 
     .headerContent{
@@ -85,16 +85,17 @@
     }
 
     #headerImage{
-        height:auto;
+        height:100px;
         max-width:600px !important;
+        margin-bottom: 20px;
     }
 
     #templateContainer, .bodyContent{
-        background-color:#494949;
+        background-color:#f2f5fc;
     }
 
     .bodyContent div{
-        color: #d7d4de;
+        color: #4d545d;
         font-family:Arial;
         font-size:14px;
         line-height:150%;
@@ -102,7 +103,7 @@
     }
 
     .bodyContent div a:link, .bodyContent div a:visited, .bodyContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -117,7 +118,7 @@
     }
 
     .leftMidColumnContent div{
-        color:#505050;
+        color:#4d545d;
         font-family:Arial;
         font-size:14px;
         line-height:150%;
@@ -125,7 +126,7 @@
     }
 
     .leftMidColumnContent div a:link, .leftMidColumnContent div a:visited, .leftMidColumnContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -140,7 +141,7 @@
     }
 
     .rightMidColumnContent div{
-        color:#505050;
+        color:#4d545d;
         font-family:Arial;
         font-size:14px;
         line-height:150%;
@@ -148,7 +149,7 @@
     }
 
     .rightMidColumnContent div a:link, .rightMidColumnContent div a:visited, .rightMidColumnContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -163,7 +164,7 @@
     }
 
     .leftLowerColumnContent div{
-        color:#505050;
+        color:#4d545d;
         font-family:Arial;
         font-size:14px;
         line-height:150%;
@@ -171,7 +172,7 @@
     }
 
     .leftLowerColumnContent div a:link, .leftLowerColumnContent div a:visited, .leftLowerColumnContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -186,7 +187,7 @@
     }
 
     .centerLowerColumnContent div{
-        color:#505050;
+        color:#4d545d;
         font-family:Arial;
         font-size:14px;
         line-height:150%;
@@ -194,7 +195,7 @@
     }
 
     .centerLowerColumnContent div a:link, .centerLowerColumnContent div a:visited, .centerLowerColumnContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -209,7 +210,7 @@
     }
 
     .rightLowerColumnContent div{
-        color:#505050;
+        color:#4d545d;
         font-family:Arial;
         font-size:14px;
         line-height:150%;
@@ -217,7 +218,7 @@
     }
 
     .rightLowerColumnContent div a:link, .rightLowerColumnContent div a:visited, .rightLowerColumnContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -229,7 +230,7 @@
 
     #templateFooter{
         border-top:0;
-        background-color: #363435;
+        background-color: #fff;
     }
 
     .footerContent div{
@@ -243,7 +244,7 @@
     }
 
     .footerContent div a:link, .footerContent div a:visited, .footerContent div a .yshortcuts{
-        color:#52a98b;
+        color:#006eb9;
         font-weight:normal;
         text-decoration:none;
     }
@@ -279,7 +280,26 @@
                 <table border="0" cellpadding="0" cellspacing="0" id="templateHeader" width="680">
                     <tbody>
                     <tr>
-                        <td class="headerContent"><img style="margin: 20px 0 30px;" id="headerImage campaign-icon" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iRWJlbmVfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI4MHB4IiBoZWlnaHQ9IjgwcHgiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgODAgODAiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxyZWN0IHg9IjEwLjY1NiIgeT0iMTAuNjU2IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg2NiAwLjUgLTAuNSAwLjg2NiAyNS4yMTIgLTE0LjU1NjMpIiBmaWxsPSIjMTRBRDg4IiB3aWR0aD0iNTguMjI2IiBoZWlnaHQ9IjU4LjIyNyIvPjxwb2x5Z29uIGZpbGw9IiMwMDY2NDMiIHBvaW50cz0iNDkuNTg2LDExLjgyIDU3LjI1LDExLjgyIDUwLjQyNSwwLjAwMSAzOS43Nyw2LjE1MyA2MS4wODIsMTguNDU3ICIvPjxwb2x5Z29uIGZpbGw9IiMwMDY2NDMiIHBvaW50cz0iMTAuNjU2LDIyLjk2MSAwLDI5LjExNCA2LjE1MiwzOS43NyAxMC42NTYsMzEuOTcgIi8+PHBhdGggZmlsbD0iIzAwNjY0MyIgZD0iTTE2LjkxNSwyMS4xMjlsMS41NDItMi42NzJMMTYuOTE1LDIxLjEyOXoiLz48cG9seWdvbiBmaWxsPSIjMDA2NjQzIiBwb2ludHM9IjY4Ljg4Miw0Ny41NzEgNjguODgyLDU2LjU3OSA3OS41MzksNTAuNDI1IDczLjM4NiwzOS43NyA2Ni4yMTcsNTIuMTg4ICIvPjxwb2x5Z29uIGZpbGw9IiMwMDY2NDMiIHBvaW50cz0iMTguNDU3LDYxLjA4MiAxOC40NTcsNjEuMDgyIDMzLjk4NCw3MC4wNDcgMjMuNjMyLDcwLjA0NyAyOS4xMTMsNzkuNTM5IDM5Ljc3LDczLjM4NyAiLz48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNTkuMjQ0LDMzLjQ1OWMwLDkuMzIxLTUuODMzLDE0LjY5Ny0xNi4wMTIsMTQuNjk3aC03Ljk1djExLjQzN2gtOS4wMzZWMTkuNTYyaDE2Ljk4NkM1My40MSwxOS41NjIsNTkuMjQ0LDI0LjU5NSw1OS4yNDQsMzMuNDU5IE01MC42NjYsMzMuNzQ1YzAtNC40Ni0yLjg1OS02LjY5LTcuODkxLTYuNjloLTcuNDkydjEzLjU1Mmg3LjQ5MkM0Ny44MDYsNDAuNjA2LDUwLjY2NiwzOC4zMTksNTAuNjY2LDMzLjc0NSIvPjxwb2x5Z29uIGZpbGw9IiMwMDg0NjIiIHBvaW50cz0iMjIuMjg5LDExLjgyIDEwLjY1NiwxMS44MiAxMC42NTYsMzEuOTY5ICIvPjxwb2x5Z29uIGZpbGw9IiMwMDg0NjIiIHBvaW50cz0iNjguODgyLDIyLjk2MSA2OC44ODIsMTEuODIxIDQ5LjU4NiwxMS44MjEgIi8+PHBvbHlnb24gZmlsbD0iIzAwODQ2MiIgcG9pbnRzPSI1NS45MDYsNzAuMDQ3IDY4Ljg4Miw3MC4wNDcgNjguODgyLDQ3LjU3MSAiLz48cG9seWdvbiBmaWxsPSIjMDA4NDYyIiBwb2ludHM9IjEwLjY1Niw1Ni41NzkgMTAuNjU2LDcwLjA0NyAzMy45ODMsNzAuMDQ3ICIvPjwvc3ZnPg==" /></td>
+                        <td>
+                            <div class="headerContent">
+                                <div id="headerImage">
+                                    <svg height="100%" width="100%" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         viewBox="0 0 69.4 69.4" style="enable-background:new 0 0 69.4 69.4;" xml:space="preserve">
+                                        <style type="text/css">
+                                            .st0{fill:#006EB9;}
+                                            .st1{fill:#FFFFFF;}
+                                        </style>
+                                        <circle class="st0" cx="34.7" cy="34.7" r="34.7"/>
+                                        <g>
+                                            <path class="st1" d="M37.2,31.6H48c2.3,2.9,3.5,5.9,3.5,9.1c0,3.7-1.4,6.8-4.1,9.4s-6.1,3.8-10,3.8c-5.2,0-9.5-2-13.1-5.9
+                                            s-5.4-8.7-5.4-14.3s1.8-10.3,5.5-14.1c3.7-3.7,8.2-5.6,13.7-5.6c1.9,0,4,0.4,6.2,1.1v11.3c-1.8-0.8-3.4-1.3-4.9-1.3
+                                            c-2.7,0-4.8,0.8-6.5,2.5s-2.5,3.8-2.5,6.4c0,2.7,0.8,4.8,2.3,6.4c1.6,1.6,3.7,2.4,6.3,2.4c1.7,0,2.5-0.5,2.5-1.5
+                                            c0-0.7-0.6-1.1-1.7-1.1h-2.6V31.6z"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -326,15 +346,15 @@
                                 <tbody>
                                 <tr>
                                     <td valign="top" width="680" style="text-align: center;">
-                                        <div>&copy; {{date('Y')}} Pixories</div>
+                                        <div>&copy; {{date('Y')}} Gomedo</div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td valign="top" width="680" style="text-align: center;">
                                         <div>
-                                            <a href="{{route('pages.show', ['slug' => 'impressum'])}}">@lang('email.master.footer.imprint')</a> -
-                                            <a href="{{route('pages.show', ['slug' => 'datenschutz'])}}">@lang('email.master.footer.privacy')</a> -
-                                            <a href="{{route('pages.show', ['slug' => 'nutzungsbedingungen'])}}">@lang('email.master.footer.terms-of-use')</a>
+                                            <a href="/">@lang('email.master.footer.imprint')</a> -
+                                            <a href="/">@lang('email.master.footer.privacy')</a> -
+                                            <a href="/">@lang('email.master.footer.terms-of-use')</a>
                                         </div>
                                     </td>
                                 </tr>

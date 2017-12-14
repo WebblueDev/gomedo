@@ -1,69 +1,42 @@
-@extends('layouts.app')
+<div class="popup popup-m">
+    <header>
+        <h3>{{trans('user.auth.login.title')}}</h3>
+        <button class="popup-hide"></button>
+    </header>
+    <div class="body">
+        <form id="form-login" class="form" method="POST" action="{{ route('user.login') }}">
+            {{ csrf_field() }}
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+            <div class="form-group">
+                <div class="field">
+                    <input id="email" type="email" class="input" name="email" required autofocus>
+                    <label for="email">{{trans('user.auth.login.form.email')}}</label>
                 </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                <div class="field">
+                    <input id="password" type="password" class="input" name="password" required autofocus>
+                    <label for="password">{{trans('user.auth.login.form.password')}}</label>
+                </div>
+            </div>
+
+            <div class="form-group last">
+                <button type="submit" class="button form-submit button-primary button-block">
+                    <span>{{trans('user.auth.login.submit')}}</span>
+                </button>
+            </div>
+        </form>
     </div>
+    <footer>
+        <a class="btn btn-link" data-popup="forgot-pw" href="{{ route('user.forgot') }}">
+            {{trans('user.auth.login.forgot')}}
+        </a>
+    </footer>
+
+    <script>
+        $('#form-login').ajaxForm({
+            reloadSuccess: true
+        })
+    </script>
 </div>
-@endsection

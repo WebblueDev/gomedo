@@ -2,7 +2,7 @@
 
 namespace Gomedo\Notifications;
 
-use Gomedo\Mail\Verify as VerifyMail;
+use Gomedo\Mail\User\Verify as VerifyMail;
 use Gomedo\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

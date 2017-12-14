@@ -12,10 +12,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function getJsonError($message, $code = 400) {
+    public function getJsonError($message, $errors = [], $code = 400) {
         return Response::json([
             'error' => true,
             'message' => $message,
+            'errors' => $errors,
             'code' => $code
         ], $code);
     }

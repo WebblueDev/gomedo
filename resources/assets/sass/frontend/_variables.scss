@@ -1,38 +1,40 @@
+// Stats & Colors
+$primary: #006eb9;
+$primary-hover: #005caa;
+$secondary: #2cbb80;
+$secondary-hover: #269e6d;
+$dark: #aab7c7;
+$darker: #4d545d;
+$light: #ecf1f5;
+$lighter: #f4faff;
+$success: #58d250;
+$success-hover: #58b437;
+$danger: #d25050;
+$danger-hover: #a64747;
+$white: #fff;
+$white-hover: #fff;
 
-// Body
-$body-bg: #f5f8fa;
+// Sizes
+$main-width: 1100px;
+$border-radius: 5px;
 
-// Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+// Spaces
+$spacing-s: 0.625em;
+$spacing-m: 1.25em;
+$spacing-l: 2em;
+$spacing-xl: 3em;
+$spacing-xxl: 4em;
 
-// Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+// Font
+$font-family: Montserrat,Helvetica,Arial,sans-serif;
+$font-regular: 400;
+$font-strong: 600;
+$font-stronger: 800;
+$font-s: 0.625em;
+$font-m: 1.25em;
+$font-l: 2em;
+$font-xl: 2.5em;
+$font-xxl: 3em;
 
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 14px;
-$line-height-base: 1.6;
-$text-color: #636b6f;
-
-// Navbar
-$navbar-default-bg: #fff;
-
-// Buttons
-$btn-default-color: $text-color;
-
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
-
-// Panels
-$panel-default-heading-bg: #fff;
+// Popup
+$popup-translate: -80px;

@@ -2,7 +2,7 @@
 
 namespace Gomedo\Notifications;
 
-use Gomedo\Mail\Verify;
+use Gomedo\Mail\User\Welcome as WelcomeMail;
 use Gomedo\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -42,7 +42,7 @@ class Welcome extends Notification
      */
     public function toMail($notifiable)
     {
-        $mail = new Verify($this->user);
+        $mail = new WelcomeMail($this->user);
         $mail->to($notifiable->email);
 
         return $mail;

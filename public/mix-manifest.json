@@ -1,6 +1,6 @@
 {
-    "/js/frontend/main.js": "/js/frontend/main.js",
-    "/js/backend/main.js": "/js/backend/main.js",
-    "/css/backend/main.css": "/css/backend/main.css",
-    "/css/frontend/main.css": "/css/frontend/main.css"
+    "/backend/js/main.js": "/backend/js/main.js",
+    "/backend/css/main.css": "/backend/css/main.css",
+    "/frontend/css/main.css": "/frontend/css/main.css",
+    "/frontend/js/main.js": "/frontend/js/main.js"
 }
