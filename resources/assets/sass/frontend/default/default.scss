@@ -1,0 +1,142 @@
+$body-background-color: $white !default;
+$body-size: 16px !default;
+$body-rendering: $render-mode !default;
+$body-family: $font-family !default;
+$body-color: $text !default;
+$body-weight: $weight-normal !default;
+$body-line-height: 1.5 !default;
+
+$code-family: $family-monospace !default;
+$code-padding: 0.25em 0.5em 0.25em !default;
+$code-weight: normal !default;
+$code-size: 0.875em !default;
+$code: $danger !default;
+$code-background: $white !default;
+$pre: $text !default;
+$pre-background: $white !default;
+
+$hr-background-color: $primary !default;
+$hr-height: 1px !default;
+$hr-margin: 1.5rem 0 !default;
+
+$strong-color: $text-strong !default;
+$strong-weight: $weight-bold !default;
+
+html {
+  background-color: $body-background-color;
+  font-size: $body-size;
+  min-width: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-rendering: $body-rendering;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: $body-family;
+}
+
+code,
+pre {
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  font-family: $code-family;
+}
+
+body {
+  color: $body-color;
+  font-size: 1rem;
+  font-weight: $body-weight;
+  line-height: $body-line-height;
+}
+
+// Inline
+
+a {
+  color: $link;
+  cursor: pointer;
+  text-decoration: none;
+
+  strong {
+    color: currentColor;
+  }
+
+  &:hover {
+    color: $link-hover;
+  }
+
+  &:focus {
+    color: $link-focus;
+  }
+
+  &:active {
+    color: $link-active;
+  }
+
+  &:visited {
+    color: $link-visited;
+  }
+
+  &[disabled] {
+    opacity: $link-disabled-opacity;
+  }
+}
+
+code {
+  background-color: $code-background;
+  color: $code;
+  font-size: $code-size;
+  font-weight: $code-weight;
+  padding: $code-padding;
+}
+
+hr {
+  background-color: $hr-background-color;
+  border: none;
+  display: block;
+  height: $hr-height;
+  margin: $hr-margin;
+}
+
+small {
+  font-size: $size-small;
+}
+
+strong {
+  color: $strong-color;
+  font-weight: $strong-weight;
+}
+
+// Block
+
+pre {
+  background-color: $pre-background;
+  color: $pre;
+  font-size: $size-small;
+  overflow-x: auto;
+  padding: 1.25rem 1.5rem;
+  white-space: pre;
+  word-wrap: normal;
+
+  code {
+    background-color: transparent;
+    color: currentColor;
+    font-size: 1em;
+    padding: 0;
+  }
+}
+
+table {
+  td,
+  th {
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: $text-strong;
+  }
+}

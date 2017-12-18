@@ -11,15 +11,16 @@ $(function () {
                 // Markup
                 submitClass: 'form-submit',
                 loadingClass: 'loading',
-                containerClass : 'popup',
-                errorClass: 'input-error',
-                errorMsgClass: 'input-error-msg',
+                containerClass : 'modal',
+                errorClass: 'is-danger',
+                successClass: 'is-success',
+                errorMsgClass: 'help',
                 redirectSuccess: false,
                 reloadSuccess: false,
                 closeSuccess: false,
                 closeTimeout: false,
                 closeTimeoutTime: 2000,
-                popup: undefined,
+                modal: undefined,
 
                 // Callbacks
                 afterSuccess : function(data){},
@@ -40,18 +41,18 @@ $(function () {
                     }else if(!this.o.closeSuccess && data.data) {
                         this.loadingEnd();
                         $('.' + this.o.containerClass).html(data.data);
-                        if(this.o.popup != undefined) {
-                            this.o.popup.addHide();
+                        if(this.o.modal != undefined) {
+                            this.o.modal.addHide();
                             if(this.o.closeTimeout) {
                                 setTimeout(() => {
-                                    this.o.popup.close();
+                                    this.o.modal.close();
                                 }, this.o.closeTimeoutTime);
                             }
                         }
                         this.o.afterSuccess.call(this, data);
                     } else {
                         this.loadingEnd();
-                        if(this.o.popup != undefined) this.o.popup.close();
+                        if(this.o.modal != undefined) this.o.modal.close();
                         this.o.afterSuccess.call(this, data);
                     }
                 },
@@ -66,7 +67,7 @@ $(function () {
                             } else {
                                 $(ele).addClass(a.o.errorClass);
                                 $(ele).parent().append(
-                                    $('<span class="' + a.o.errorMsgClass + '"/>').html(value)
+                                    $('<span class="' + a.o.errorMsgClass + ' ' + a.o.errorClass + '"/>').html(value)
                                 );
                                 $(ele).one('keydown', function () {
                                     $(this).removeClass(a.o.errorClass);

@@ -1,23 +1,23 @@
-var _POPUP = undefined;
+var _MODAL = undefined;
 
 $(function () {
     'use strict';
 
-    $.fn.popup = function(options) {
+    $.fn.modal = function(options) {
 
-        $.Popup = function(settings)
+        $.Modal = function(settings)
         {
             let p = this;
             let defaults = {
 
                 // Markup
-                containerId : 'popup',
-                containerClass : 'popup',
-                backClass : 'popup-background',
-                closeClass : 'popup-close',
-                openClass : 'popup-open',
-                hideClass: 'popup-hide',
-                popupAnimationSpeed: 300,
+                containerId : 'modal',
+                containerClass : 'modal',
+                backClass : 'modal-background',
+                closeClass : 'is-close',
+                openClass : 'is-open',
+                hideClass: 'modal-hide',
+                modalAnimationSpeed: 300,
 
                 // Callbacks
                 error : function(p, data){
@@ -38,12 +38,12 @@ $(function () {
             p.open = function(ele){
 
                 // Get identifier
-                let id = $(ele).attr('data-popup');
+                let id = $(ele).attr('data-modal');
 
                 // Cache check
-                if( _POPUP === undefined || _POPUP != p || (_POPUP != undefined && $identifier != id) ){
+                if( _MODAL === undefined || _MODAL != p || (_MODAL != undefined && $identifier != id) ){
 
-                    if(_POPUP != p ||(_POPUP != undefined && $identifier != id)) {
+                    if(_MODAL != p ||(_MODAL != undefined && $identifier != id)) {
                         p.cleanUp();
                     }
 
@@ -57,7 +57,7 @@ $(function () {
                         return false;
                     }
 
-                    // Create popup container
+                    // Create modal container
                     $container = $('<div id="'+p.o.containerId+'" class="'+p.o.openClass +'" />')
                         .prependTo($('body'));
 
@@ -79,7 +79,7 @@ $(function () {
                         }
                     });
                 } else {
-                    // Just show the popup again
+                    // Just show the modal again
                     $container.show();
                     $container.toggleClass(p.o.openClass + " " + p.o.closeClass);
                 }
@@ -94,7 +94,7 @@ $(function () {
              */
             function showContent(content){
 
-                // Set popup container and put in the content
+                // Set modal container and put in the content
                 $container.append(content);
                 $p = $("." + p.o.containerClass);
 
@@ -110,7 +110,7 @@ $(function () {
             }
 
             /**
-             * Close the popup
+             * Close the modal
              *
              * @return {Object}
              */
@@ -119,33 +119,33 @@ $(function () {
                 $container.toggleClass(p.o.openClass + " " + p.o.closeClass);
                 setTimeout(() => {
                     $container.hide();
-                }, p.o.popupAnimationSpeed)
+                }, p.o.modalAnimationSpeed)
                 return p;
 
             };
 
             /**
-             * Clean up the popup
+             * Clean up the modal
              *
              * @return {Object}
              */
             p.cleanUp = function(){
 
-                // Can not remove $container, maybe there is another popup instance!
+                // Can not remove $container, maybe there is another modal instance!
                 $('#' + p.o.containerId).remove();
                 $container = $p = $back = undefined;
-                _POPUP = undefined;
+                _MODAL = undefined;
 
                 return p;
 
             };
         };
 
-        let $popup = new $.Popup(options);
+        let $modal = new $.Modal(options);
         return this.each( function() {
             $(this).on('click', function(e){
                 e.preventDefault();
-                _POPUP = $popup.open(this);
+                _MODAL = $modal.open(this);
             });
         });
     };

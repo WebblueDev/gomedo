@@ -1,0 +1,79 @@
+$title-color: $darkest !default;
+$title-size: $size-2 !default;
+$title-weight: $weight-extrabold!default;
+$title-strong-color: inherit !default;
+$title-strong-weight: inherit !default;
+
+$subtitle-color: $dark !default;
+$subtitle-size: $size-5 !default;
+$subtitle-weight: $weight-bold !default;
+$subtitle-strong-color: inherit !default;
+$subtitle-strong-weight: inherit !default;
+
+$title-space: $size-5;
+
+.title,
+.subtitle {
+  @include block;
+
+  word-break: break-word;
+
+  em,
+  span {
+    font-weight: inherit;
+  }
+
+  .tag {
+    vertical-align: middle;
+  }
+}
+
+.title {
+  color: $title-color;
+  font-size: $title-size;
+  font-weight: $title-weight;
+  line-height: 1.125;
+
+  strong {
+    color: $title-strong-color;
+    font-weight: $title-strong-weight;
+  }
+
+  &:not(.is-spaced) + .subtitle {
+    margin-top: -$title-space;
+  }
+
+  // Sizes
+  @each $size in $sizes {
+    $i: index($sizes, $size);
+
+    &.is-#{$i} {
+      font-size: $size;
+    }
+  }
+}
+
+.subtitle {
+  color: $subtitle-color;
+  font-size: $subtitle-size;
+  font-weight: $subtitle-weight;
+  line-height: 1.25;
+
+  strong {
+    color: $subtitle-strong-color;
+    font-weight: $subtitle-strong-weight;
+  }
+
+  &:not(.is-spaced) + .title {
+    margin-top: -$title-space;
+  }
+
+  // Sizes
+  @each $size in $sizes {
+    $i: index($sizes, $size);
+
+    &.is-#{$i} {
+      font-size: $size;
+    }
+  }
+}

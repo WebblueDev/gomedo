@@ -1,0 +1,80 @@
+// General Colors
+$primary: #006eb9;
+$secondary: #2cbb80;
+$primary-invert: findColorInvert($primary) !default;
+$secondary-invert: findColorInvert($secondary) !default;
+
+$dark: #6f7886 !default;
+$darker: #393e46 !default;
+$darkest: #393e46 !default;
+$light: #aab7c7 !default;
+$lighter: #ecf1f5 !default;
+$lightest: #f4faff !default;
+$white: #fff !default;
+
+$info: hsl(217, 71%, 53%) !default;
+$success: hsl(141, 71%, 48%) !default;
+$warning: hsl(48, 100%, 67%) !default;
+$danger: hsl(348, 100%, 61%) !default;
+$info-invert: findColorInvert($info) !default;
+$success-invert: findColorInvert($success) !default;
+$warning-invert: findColorInvert($warning) !default;
+$danger-invert: findColorInvert($danger) !default;
+
+$darkener: 5%;
+
+// Text colors
+$text: $darker !default;
+$text-light: $dark !default;
+$text-strong: $darkest !default;
+
+// Link colors
+$link: $primary !default;
+$link-invert: $primary-invert !default;
+$link-hover: darken($primary, $darkener) !default;
+$link-visited: $link-hover !default;
+$link-hover-border: none !default;
+$link-focus: $link-hover !default;
+$link-focus-border: none !default;
+$link-active: $link-hover !default;
+$link-active-border: none !default;
+$link-disabled-opacity: 0.5 !default;
+
+// Layout
+$column-gap: 16px !default;
+$block-gap: 1.5rem !default;
+$tablet: 769px !default;
+$desktop: 960px + 2 * $column-gap !default;
+$widescreen: 1152px + 2 * $column-gap !default;
+$fullhd: 1344px + 2 * $column-gap !default;
+
+// Typography
+$font-family: Montserrat, Helvetica, Arial, sans-serif !default;
+$family-monospace: monospace !default;
+$render-mode: optimizeLegibility !default;
+$weight-normal: 400 !default;
+$weight-bold: 600 !default;
+$weight-extrabold: 800 !default;
+
+// Sizes
+$size-1: 3rem !default;
+$size-2: 2.5rem !default;
+$size-3: 2rem !default;
+$size-4: 1.5rem !default;
+$size-5: 1.25rem !default;
+$size-6: 1rem !default;
+$size-7: 0.75rem !default;
+
+$size-small: $size-7 !default;
+$size-normal: $size-6 !default;
+$size-medium: $size-5 !default;
+$size-large: $size-4 !default;
+
+// Elements
+$border-radius-full: 290486px !default;
+$border-radius: 5px !default;
+
+// Lists
+$sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 !default;
+$weights: ("normal": $weight-normal, "bold": $weight-bold, "extrabold": $weight-extrabold) !default;
+$colors: ("white": ($white, $white), "dark": ($darker, $dark), "light": ($lighter, $light), "primary": ($primary, $primary-invert), "secondary": ($secondary, $secondary-invert), "link": ($link, $link-invert), "info": ($info, $info-invert), "success": ($success, $success-invert), "warning": ($warning, $warning-invert), "danger": ($danger, $danger-invert)) !default;

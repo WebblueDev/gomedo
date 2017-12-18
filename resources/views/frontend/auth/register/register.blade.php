@@ -1,7 +1,7 @@
-<div class="popup popup-l">
+<div class="modal is-large">
     <header>
         <h3>{{trans('user.auth.register.title')}}</h3>
-        <button class="popup-hide"></button>
+        <button class="modal-hide"></button>
     </header>
     <div class="body">
         <form id="form-register" class="form" method="POST" action="{{ route('user.register') }}">
@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-group last">
-                <button type="submit" class="button form-submit button-primary button-block">
+                <button type="submit" class="button form-submit is-primary">
                     <span>{{trans('user.auth.register.submit')}}</span>
                 </button>
             </div>

@@ -1,5 +1,5 @@
 require('../bootstrap');
-require('../popup');
+require('../modal');
 require('../form');
 
 $('[data-popup]').popup();

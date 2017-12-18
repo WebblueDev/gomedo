@@ -1,0 +1,389 @@
+$button-color: $white !default;
+$button-background-color: $primary !default;
+
+$button-padding-vertical: 0.5em !default;
+$button-padding-horizontal: 1.1em !default;
+$button-height: 2.25em;
+$button-line-height: 1.25em;
+
+$button-border-color: $primary !default;
+$button-border-radius: $border-radius-full !default;
+$button-border: 2px !default;
+$button-border-small: 1px !default;
+
+$button-text-color: $link !default;
+$button-text-hover-color: $link-hover !default;
+$button-text-active-color: $link-active !default;
+$button-text-focus-color: $link-focus !default;
+
+$button-hover-color: darken($primary, $darkener) !default;
+$button-hover-border-color: $button-hover-color !default;
+$button-hover-shadow: none !default;
+
+$button-focus-color: darken($primary, $darkener) !default;
+$button-focus-border-color: $button-focus-color !default;
+$button-focus-shadow: none !default;
+
+$button-active-color: darken($primary, $darkener) !default;
+$button-active-border-color: $button-active-color !default;
+$button-active-shadow: none !default;
+
+$button-disabled-opacity: $link-disabled-opacity !default;
+
+// The button sizes use mixins so they can be used at different breakpoints
+@mixin button-small {
+  border-size: 1px;
+  font-size: $size-small;
+  font-weight: $weight-normal;
+  padding-bottom: calc(#{$button-padding-vertical} - #{$button-border-small});
+  padding-left: calc(#{$button-padding-horizontal} - #{$button-border-small});
+  padding-right: calc(#{$button-padding-horizontal} - #{$button-border-small});
+  padding-top: calc(#{$button-padding-vertical} - #{$button-border-small});
+}
+
+@mixin button-medium {
+  font-size: $size-medium;
+}
+
+@mixin button-large {
+  font-size: $size-large;
+}
+
+.button {
+  @include unselectable;
+  @include appearance;
+  align-items: center;
+  border: $button-border solid $button-border-color;
+  border-radius: $button-border-radius;
+  box-shadow: none;
+  display: inline-flex;
+  font-weight: $weight-bold;
+  font-size: $size-normal;
+  height: $button-height;
+  justify-content: flex-start;
+  line-height: $button-line-height;
+  padding-bottom: calc(#{$button-padding-vertical} - #{$button-border});
+  padding-left: calc(#{$button-padding-horizontal} - #{$button-border});
+  padding-right: calc(#{$button-padding-horizontal} - #{$button-border});
+  padding-top: calc(#{$button-padding-vertical} - #{$button-border});
+  position: relative;
+  vertical-align: middle;
+  background-color: $button-background-color;
+  color: $button-color;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+
+  strong {
+    color: inherit;
+  }
+
+  .icon {
+    &,
+    &.is-small,
+    &.is-medium,
+    &.is-large {
+      height: 1.5em;
+      width: 1.5em;
+    }
+
+    &:first-child:not(:last-child) {
+      margin-left: calc(-0.375em - 1px);
+    }
+
+    &:last-child:not(:first-child) {
+      margin-right: calc(-0.375em - 1px);
+    }
+
+    &:first-child:last-child {
+      margin-left: calc(-0.375em - 1px);
+      margin-right: calc(-0.375em - 1px);
+    }
+  }
+
+  // States
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $button-disabled-opacity;
+  }
+
+  &:not(.is-static)hover,
+  &:not(.is-static).is-hovered {
+    border-color: $button-hover-border-color;
+    color: $button-hover-color;
+    box-shadow: $button-hover-shadow;
+  }
+
+  &:not(.is-static):focus,
+  &:not(.is-static).is-focused {
+    border-color: $button-focus-border-color;
+    color: $button-focus-color;
+    box-shadow: $button-focus-shadow;
+  }
+
+  &:not(.is-static):active,
+  &:not(.is-static).is-active {
+    border-color: $button-active-border-color;
+    color: $button-active-color;
+    box-shadow: $button-active-shadow;
+  }
+
+  // Colors
+  &.is-text {
+    color: $button-text-color;
+
+    &:hover,
+    &.is-hovered {
+      color: $button-text-hover-color;
+    }
+
+    &:focus,
+    &.is-focused {
+      color: $button-text-focus-color;
+    }
+
+    &:active,
+    &.is-active {
+      color: $button-text-active-color;
+    }
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    &.is-#{$name} {
+      background-color: $color;
+      border-color: transparent;
+      color: $color-invert;
+
+      &:hover,
+      &.is-hovered {
+        background-color: darken($color, $darkener);
+        border-color: transparent;
+        color: $color-invert;
+      }
+
+      &:focus,
+      &.is-focused {
+        border-color: transparent;
+        color: $color-invert;
+
+        &:not(:active) {
+          box-shadow: none;
+        }
+      }
+
+      &:active,
+      &.is-active {
+        background-color: darken($color, $darkener);
+        border-color: transparent;
+        color: $color-invert;
+      }
+
+      &.is-inverted {
+        background-color: $color-invert;
+        color: $color;
+
+        &:hover {
+          background-color: darken($color-invert, $darkener);
+        }
+      }
+
+      &.is-loading {
+        &:after {
+          border-color: transparent transparent $color-invert $color-invert !important;
+        }
+      }
+
+      &.is-outlined {
+        background-color: transparent;
+        border-color: $color;
+        color: $color;
+
+        &:hover {
+          background-color: darken($color, $darkener);
+          border-color: darken($color, $darkener);
+          color: $color-invert;
+        }
+
+        &:focus {
+          border-color: darken($color, $darkener);
+        }
+
+        &.is-loading {
+          &:after {
+            border-color: transparent transparent $color $color !important;
+          }
+        }
+      }
+
+      &.is-inverted.is-outlined {
+        background-color: transparent;
+        border-color: $color-invert;
+        color: $color-invert;
+
+        &:hover,
+        &:focus {
+          background-color: $color-invert;
+          color: $color;
+        }
+      }
+
+      &.is-text {
+        color: $color;
+
+        &:hover,
+        &.is-hovered,
+        &:focus,
+        &.is-focused,
+        &:active,
+        &.is-active {
+          color: darken($color, $darkener);
+        }
+      }
+    }
+  }
+
+  // Sizes
+  &.is-small {
+    @include button-small;
+  }
+
+  &.is-medium {
+    @include button-medium;
+  }
+
+  &.is-large {
+    @include button-large;
+  }
+
+  // Modifiers
+  &.is-text {
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+
+    &:hover,
+    &.is-hovered {
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    &:focus,
+    &.is-focused {
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    &:active,
+    &.is-active {
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    &[disabled] {
+      opacity: $button-disabled-opacity;
+    }
+  }
+
+  &.is-fullwidth {
+    display: flex;
+    width: 100%;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    &:after {
+      @include loader;
+
+      @include center(1em);
+
+      position: absolute !important;
+    }
+  }
+
+  &.is-static {
+    pointer-events: none;
+  }
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .button {
+    margin-bottom: 0.5rem;
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: -0.5rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &.has-addons {
+    .button {
+      &:not(:first-child) {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+
+      &:not(:last-child) {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        margin-right: -1px;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover,
+      &.is-hovered {
+        z-index: 2;
+      }
+
+      &:focus,
+      &.is-focused,
+      &:active,
+      &.is-active,
+      &.is-selected {
+        z-index: 3;
+
+        &:hover {
+          z-index: 4;
+        }
+      }
+    }
+  }
+
+  &.is-centered {
+    justify-content: center;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+  }
+}

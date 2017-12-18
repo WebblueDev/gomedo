@@ -1,0 +1,51 @@
+$icon-dimensions: 1.5rem !default;
+$icon-dimensions-small: 1rem !default;
+$icon-dimensions-medium: 2rem !default;
+$icon-dimensions-large: 3rem !default;
+
+@font-face {
+  font-family: 'icons';
+  src: url('../font/icons.eot');
+  src: url('../font/icons.eot#iefix') format('embedded-opentype'),
+  url('../font/icons.woff2') format('woff2'),
+  url('../font/icons.woff') format('woff'),
+  url('../font/icons.ttf') format('truetype'),
+  url('../font/icons.svg#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  height: $icon-dimensions;
+  width: $icon-dimensions;
+
+    &.is-small {
+      height: $icon-dimensions-small;
+      width: $icon-dimensions-small;
+    }
+    &.is-medium {
+      height: $icon-dimensions-medium;
+      width: $icon-dimensions-medium;
+    }
+    &.is-large {
+      height: $icon-dimensions-large;
+      width: $icon-dimensions-large;
+    }
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

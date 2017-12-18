@@ -12107,25 +12107,25 @@ module.exports = function spread(callback) {
 /* 29 */
 /***/ (function(module, exports) {
 
-var _POPUP = undefined;
+var _MODAL = undefined;
 
 $(function () {
     'use strict';
 
-    $.fn.popup = function (options) {
+    $.fn.modal = function (options) {
 
-        $.Popup = function (settings) {
+        $.Modal = function (settings) {
             var p = this;
             var defaults = {
 
                 // Markup
-                containerId: 'popup',
-                containerClass: 'popup',
-                backClass: 'popup-background',
-                closeClass: 'popup-close',
-                openClass: 'popup-open',
-                hideClass: 'popup-hide',
-                popupAnimationSpeed: 300,
+                containerId: 'modal',
+                containerClass: 'modal',
+                backClass: 'modal-background',
+                closeClass: 'is-close',
+                openClass: 'is-open',
+                hideClass: 'modal-hide',
+                modalAnimationSpeed: 300,
 
                 // Callbacks
                 error: function error(p, data) {
@@ -12143,12 +12143,12 @@ $(function () {
             p.open = function (ele) {
 
                 // Get identifier
-                var id = $(ele).attr('data-popup');
+                var id = $(ele).attr('data-modal');
 
                 // Cache check
-                if (_POPUP === undefined || _POPUP != p || _POPUP != undefined && $identifier != id) {
+                if (_MODAL === undefined || _MODAL != p || _MODAL != undefined && $identifier != id) {
 
-                    if (_POPUP != p || _POPUP != undefined && $identifier != id) {
+                    if (_MODAL != p || _MODAL != undefined && $identifier != id) {
                         p.cleanUp();
                     }
 
@@ -12162,7 +12162,7 @@ $(function () {
                         return false;
                     }
 
-                    // Create popup container
+                    // Create modal container
                     $container = $('<div id="' + p.o.containerId + '" class="' + p.o.openClass + '" />').prependTo($('body'));
 
                     // Create back and fade in
@@ -12181,7 +12181,7 @@ $(function () {
                         }
                     });
                 } else {
-                    // Just show the popup again
+                    // Just show the modal again
                     $container.show();
                     $container.toggleClass(p.o.openClass + " " + p.o.closeClass);
                 }
@@ -12196,7 +12196,7 @@ $(function () {
              */
             function showContent(content) {
 
-                // Set popup container and put in the content
+                // Set modal container and put in the content
                 $container.append(content);
                 $p = $("." + p.o.containerClass);
 
@@ -12211,7 +12211,7 @@ $(function () {
             };
 
             /**
-             * Close the popup
+             * Close the modal
              *
              * @return {Object}
              */
@@ -12220,31 +12220,31 @@ $(function () {
                 $container.toggleClass(p.o.openClass + " " + p.o.closeClass);
                 setTimeout(function () {
                     $container.hide();
-                }, p.o.popupAnimationSpeed);
+                }, p.o.modalAnimationSpeed);
                 return p;
             };
 
             /**
-             * Clean up the popup
+             * Clean up the modal
              *
              * @return {Object}
              */
             p.cleanUp = function () {
 
-                // Can not remove $container, maybe there is another popup instance!
+                // Can not remove $container, maybe there is another modal instance!
                 $('#' + p.o.containerId).remove();
                 $container = $p = $back = undefined;
-                _POPUP = undefined;
+                _MODAL = undefined;
 
                 return p;
             };
         };
 
-        var $popup = new $.Popup(options);
+        var $modal = new $.Modal(options);
         return this.each(function () {
             $(this).on('click', function (e) {
                 e.preventDefault();
-                _POPUP = $popup.open(this);
+                _MODAL = $modal.open(this);
             });
         });
     };
@@ -12266,15 +12266,16 @@ $(function () {
                 // Markup
                 submitClass: 'form-submit',
                 loadingClass: 'loading',
-                containerClass: 'popup',
-                errorClass: 'input-error',
-                errorMsgClass: 'input-error-msg',
+                containerClass: 'modal',
+                errorClass: 'is-danger',
+                successClass: 'is-success',
+                errorMsgClass: 'help',
                 redirectSuccess: false,
                 reloadSuccess: false,
                 closeSuccess: false,
                 closeTimeout: false,
                 closeTimeoutTime: 2000,
-                popup: undefined,
+                modal: undefined,
 
                 // Callbacks
                 afterSuccess: function afterSuccess(data) {},
@@ -12296,18 +12297,18 @@ $(function () {
                     } else if (!this.o.closeSuccess && data.data) {
                         this.loadingEnd();
                         $('.' + this.o.containerClass).html(data.data);
-                        if (this.o.popup != undefined) {
-                            this.o.popup.addHide();
+                        if (this.o.modal != undefined) {
+                            this.o.modal.addHide();
                             if (this.o.closeTimeout) {
                                 setTimeout(function () {
-                                    _this.o.popup.close();
+                                    _this.o.modal.close();
                                 }, this.o.closeTimeoutTime);
                             }
                         }
                         this.o.afterSuccess.call(this, data);
                     } else {
                         this.loadingEnd();
-                        if (this.o.popup != undefined) this.o.popup.close();
+                        if (this.o.modal != undefined) this.o.modal.close();
                         this.o.afterSuccess.call(this, data);
                     }
                 },
@@ -12321,7 +12322,7 @@ $(function () {
                                 $(ele).siblings('.' + a.o.errorMsgClass).html(value);
                             } else {
                                 $(ele).addClass(a.o.errorClass);
-                                $(ele).parent().append($('<span class="' + a.o.errorMsgClass + '"/>').html(value));
+                                $(ele).parent().append($('<span class="' + a.o.errorMsgClass + ' ' + a.o.errorClass + '"/>').html(value));
                                 $(ele).one('keydown', function () {
                                     $(this).removeClass(a.o.errorClass);
                                     $(this).siblings('.' + a.o.errorMsgClass).remove();
