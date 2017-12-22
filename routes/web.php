@@ -17,6 +17,10 @@ Route::get('/', [
     'as' => 'index', 'uses' => 'Frontend\IndexController@index'
 ]);
 
+Route::get('/product', [
+    'as' => 'product', 'uses' => 'Frontend\Product\ProductController@show'
+]);
+
 Route::group(['prefix' => 'user', 'namespace' => 'Auth', 'as' => 'user.'], function () {
     Route::group(['middleware' => 'guest'], function () {
         Route::group(['middleware' => 'ajax'], function () {

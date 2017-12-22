@@ -4,8 +4,19 @@
             <a href="/" id="logo">
                 <img src="{{asset('frontend/images/logo/logo.svg')}}" />
             </a>
+            <div id="categories">
+                <div class="opener">
+                    <span class="icon icon-th"></span> Categories
+                </div>
+                <ul>
+                    <li>Blub</li>
+                </ul>
+            </div>
             <div id="search">
-                <input class="input search-input" type="text" placeholder="@lang('main.page.header.search')">
+                <div class="control has-icon has-icon-right">
+                    <input class="input search-input" type="text" placeholder="@lang('main.page.header.search')">
+                    <span class="icon icon-search"></span>
+                </div>
             </div>
             <div id="account-menu">
                 @if(Auth::check())
@@ -19,40 +30,4 @@
             </div>
         </nav>
     </div>
-    <nav id="secondary-nav">
-        <div class="container">
-            <ul class="list-hor">
-                <li>
-                    <a href="/" title="">
-                        <span class="icon icon-windows"></span> Windows
-                    </a>
-                </li>
-                <li>
-                    <a href="/" title="">
-                        <span class="icon icon-apple"></span> Mac
-                    </a>
-                </li>
-                <li>
-                    <a href="/" title="">
-                        <span class="icon icon-gamepad"></span> Konsole
-                    </a>
-                </li>
-                <li>
-                    <a href="/" title="">
-                     <span class="icon icon-xbox"></span> Xbox
-                    </a>
-                </li>
-                <li>
-                    <a href="/" title="">
-                        <span class="icon icon-playstation"></span> Playstation
-                    </a>
-                </li>
-                <li>
-                    <a href="/" title="">
-                        <span class="icon icon-star"></span> Gamecards
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 </header>

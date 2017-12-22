@@ -34,7 +34,6 @@ $button-disabled-opacity: $link-disabled-opacity !default;
 @mixin button-small {
   border-size: 1px;
   font-size: $size-small;
-  font-weight: $weight-normal;
   padding-bottom: calc(#{$button-padding-vertical} - #{$button-border-small});
   padding-left: calc(#{$button-padding-horizontal} - #{$button-border-small});
   padding-right: calc(#{$button-padding-horizontal} - #{$button-border-small});

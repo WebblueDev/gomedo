@@ -18,7 +18,7 @@
                     <a href="/" class="wrapper">
                         <img src="/frontend/images/placeholders/article-card-1.jpg" />
                         <div class="inner">
-                            <header class="has-text-right"><span>Save 33%</span></header>
+                            <header class="has-text-right"><span class="tag is-white has-text-secondary">Save 33%</span></header>
                             <div class="body">
                                 <h3>World of Warcraft: Legion</h3>
                             </div>
@@ -29,11 +29,11 @@
                         </div>
                     </a>
                 </div>
-                <div class="article-card column is-3-desktop is-6-tablet is-12-mobile">
+                <div class="article-card column is-3-desktop is-6-tablpret is-12-mobile">
                     <a href="/" class="wrapper">
                         <img src="/frontend/images/placeholders/article-card-2.jpg" />
                         <div class="inner">
-                            <header class="has-text-right"><span>Save 20%</span></header>
+                            <header class="has-text-right"><span class="tag is-white has-text-secondary">Save 20%</span></header>
                             <div class="body">
                                 <h3>Battlefield</h3>
                             </div>
@@ -48,7 +48,7 @@
                     <a href="/" class="wrapper">
                         <img src="/frontend/images/placeholders/article-card-3.jpg" />
                         <div class="inner">
-                            <header class="has-text-right"><span>Save 46%</span></header>
+                            <header class="has-text-right"><span class="tag is-white has-text-secondary">Save 46%</span></header>
                             <div class="body">
                                 <h3>Fifa 18</h3>
                             </div>
@@ -63,7 +63,7 @@
                     <a href="/" class="wrapper">
                         <img src="/frontend/images/placeholders/article-card-4.jpg" />
                         <div class="inner">
-                            <header class="has-text-right"><span>Save 16%</span></header>
+                            <header class="has-text-right"><span class="tag is-white has-text-secondary">Save 16%</span></header>
                             <div class="body">
                                 <h3>Star Wars: Battlefront II</h3>
                             </div>

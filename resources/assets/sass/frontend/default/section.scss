@@ -5,6 +5,9 @@ $section-padding-large: $size-1 0 !default;
 .section {
   padding: $section-padding;
 
+  &.is-spaceless {
+    padding: 0;
+  }
   &.is-medium {
     padding: $section-padding-medium;
   }
